@@ -21,6 +21,15 @@ def read_data
   end
 end
 
+def write_data(id)
+  title = params[:title]
+  comment = params[:comment]
+  File.open("json/#{id}.json", 'w') do |file|
+    hash = { id: id, title: title, comment: comment }
+    JSON.dump(hash, file)
+  end
+end
+
 get '/notes' do
   @title = 'メモアプリ'
   @notes = []
@@ -41,12 +50,7 @@ end
 
 post '/notes' do
   id = Time.now.strftime('%Y%m%d%H%M%S')
-  title = params[:title]
-  comment = params[:comment]
-  File.open("json/#{id}.json", 'w') do |file|
-    hash = { id: id, title: title, comment: comment }
-    JSON.dump(hash, file)
-  end
+  write_data(id)
 
   redirect '/notes', 303
 end
@@ -67,12 +71,7 @@ end
 
 patch '/notes/:id' do
   id = params[:id]
-  title = params[:title]
-  comment = params[:comment]
-  File.open("json/#{id}.json", 'w') do |file|
-    hash = { id: id, title: title, comment: comment }
-    JSON.dump(hash, file)
-  end
+  write_data(id)
 
   redirect '/notes', 303
 end
