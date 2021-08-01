@@ -2,7 +2,7 @@
   <ul class="note_list">
     <% @notes.each do |note| %>
     <li>
-      <a href="/notes/<%= note[:id] %>"><%= note[:title] %></a>
+      <a href="/notes/<%= note[:id] %>"><%= escape_html note[:title] %></a>
     </li>
     <% end %>
   </ul>

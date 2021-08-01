@@ -2,11 +2,11 @@
   <form action="/notes/<%= @id %>" method="POST" class="form">
     <div class="form_item">
       <label for="title">タイトル</label>
-      <input type="text" value="<%= @notes[:title] %>" id="title" name="title" placeholder="タイトルを入力" required>
+      <input type="text" value="<%= escape_html @notes[:title] %>" id="title" name="title" placeholder="タイトルを入力" required>
     </div>
     <div class="form_item">
       <label for="comment">コメント</label>
-      <textarea id="comment" name="comment" rows="7" cols="33" placeholder="コメントを入力"><%= @notes[:comment] %></textarea>
+      <textarea id="comment" name="comment" rows="7" cols="33" placeholder="コメントを入力"><%= escape_html @notes[:comment] %></textarea>
     </div>
     <div class="button_items">
       <input type="hidden" name="_method" value="PATCH">

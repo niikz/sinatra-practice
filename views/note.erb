@@ -1,7 +1,7 @@
 <div class="contents">
   <div class="note_item">
-    <h2 class="note_title"><%= @notes[:title] %></h2>
-    <p class="note_comment"><%= @notes[:comment] %></p>
+    <h2 class="note_title"><%= escape_br @notes[:title] %></h2>
+    <p class="note_comment"><%= escape_br @notes[:comment] %></p>
   </div>
   <div class="button_items">
     <a href="/notes/<%= @id %>/edit" class="button edit">編集</a>

@@ -4,6 +4,16 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'json'
 
+helpers do
+  def escape_html(text)
+    Rack::Utils.escape_html(text)
+  end
+
+  def escape_br(text)
+    Rack::Utils.escape_html(text).gsub(/\n|\r|\r\n/, '<br>')
+  end
+end
+
 get '/notes' do
   @title = 'メモアプリ'
   @notes = []
