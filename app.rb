@@ -14,6 +14,13 @@ helpers do
   end
 end
 
+def read_data
+  @id = params[:id]
+  File.open("json/#{@id}.json", 'r') do |file|
+    @notes = JSON.parse(file.read, symbolize_names: true)
+  end
+end
+
 get '/notes' do
   @title = 'メモアプリ'
   @notes = []
@@ -46,20 +53,14 @@ end
 
 get '/notes/:id' do
   @title = 'メモ内容を確認'
-  @id = params[:id]
-  File.open("json/#{@id}.json", 'r') do |file|
-    @notes = JSON.parse(file.read, symbolize_names: true)
-  end
+  read_data
 
   erb :note
 end
 
 get '/notes/:id/edit' do
   @title = 'メモ内容を編集'
-  @id = params[:id]
-  File.open("json/#{@id}.json", 'r') do |file|
-    @notes = JSON.parse(file.read, symbolize_names: true)
-  end
+  read_data
 
   erb :edit
 end
