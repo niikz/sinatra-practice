@@ -1,0 +1,156 @@
+/* reset */
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: #eee;
+  width: 100%;
+  min-height: 100vh;
+  color: #56534f;
+  font-family: system-ui, sans-serif;
+  word-break: break-word;
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: inherit;
+}
+input,
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+/* header */
+header {
+  background-color: #fff;
+  width: 100%;
+}
+.header_inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 800px;
+  margin: auto;
+  padding: 0 25px;
+}
+.header_title {
+  font-size: 20px;
+  line-height: 1;
+}
+.header_button {
+  display: flex;
+  justify-content: center;
+}
+.header_button .button {
+  width: 100px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+/* contents */
+.contents {
+  background-color: #eee;
+  max-width: 800px;
+  margin: auto;
+  padding: 25px;
+}
+.note_list li {
+  margin-top: 15px;
+}
+.note_list li a {
+  background-color: #fff;
+  border: 1px solid #d1d1d1;
+  border-radius: 5px;
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  padding: 15px;
+}
+.note_item {
+  background-color: #fff;
+  min-height: 250px;
+  padding: 15px;
+}
+.note_title {
+  border-bottom: 1px solid #d1d1d1;
+  margin: 0 auto 15px;
+  padding-bottom: 5px;
+}
+.note_comment {
+  margin: auto;
+}
+/* form */
+.form {
+  width: 100%;
+  height: auto;
+}
+.form_item {
+  margin-bottom: 30px;
+}
+label {
+  display: block;
+  font-size: 14px;
+  padding-bottom: 5px;
+}
+input[type="text"],
+textarea {
+  background: #fff;
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 5px;
+}
+textarea {
+  resize: vertical;
+}
+/* button */
+.button {
+  background-color: #fff;
+  border: solid 1px #d1d1d1;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.8;
+  text-decoration: none;
+  margin: 0 5px;
+  cursor: pointer;
+}
+.button:hover {
+  opacity: 0.8;
+}
+.button.new,
+.button.save {
+  background-color: #f5c23a;
+}
+.button.edit {
+  color: #fff;
+  background-color: #229bcc;
+}
+.button.delete {
+  color: #fff;
+  background-color: #ff5454;
+}
+.button_items {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
