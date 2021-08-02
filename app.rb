@@ -31,7 +31,7 @@ def write_data(id)
 end
 
 get '/notes' do
-  @title = 'メモアプリ'
+  @title = 'メモ一覧'
   @notes = []
   filename = Dir.glob('json/*').sort.reverse
   filename.each do |file|
