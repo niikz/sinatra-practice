@@ -23,7 +23,7 @@ Sinatraで作成された簡易的なメモアプリです。
 
 アプリを実行後、下記へアクセスしてください。
 ```
-http://localhost:4567/memos
+http://localhost:4567/notes
 ```
 
 ## Author
