@@ -46,6 +46,7 @@ GEM
       tilt (~> 2.0)
     tilt (2.0.10)
     unicode-display_width (2.0.0)
+    webrick (1.6.0)
 
 PLATFORMS
   ruby
@@ -54,6 +55,7 @@ DEPENDENCIES
   rubocop-fjord
   sinatra
   sinatra-contrib
+  webrick
 
 BUNDLED WITH
-   2.0.1
+   2.1.4
