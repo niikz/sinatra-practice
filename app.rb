@@ -10,9 +10,8 @@ helpers do
   end
 end
 
-def read_note
-  @id = params[:id]
-  File.open("json/#{@id}.json", 'r') do |file|
+def read_note(id)
+  File.open("json/#{id}.json", 'r') do |file|
     @notes = JSON.parse(file.read, symbolize_names: true)
   end
 end
@@ -53,14 +52,16 @@ end
 
 get '/notes/:id' do
   @title = 'メモ内容を確認'
-  read_note
+  id = params[:id]
+  read_note(id)
 
   erb :note
 end
 
 get '/notes/:id/edit' do
   @title = 'メモ内容を編集'
-  read_note
+  id = params[:id]
+  read_note(id)
 
   erb :edit
 end
