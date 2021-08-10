@@ -18,6 +18,7 @@ Sinatraで作成された簡易的なメモアプリです。
 
 ```
 % https://github.com/niikz/sinatra-practice.git
+% bundle install
 % bundle exec ruby app.rb
 ```
 
