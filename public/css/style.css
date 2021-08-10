@@ -93,6 +93,7 @@ header {
 }
 .note_comment {
   margin: auto;
+  white-space: pre-wrap;
 }
 /* form */
 .form {
