@@ -14,14 +14,14 @@ helpers do
   end
 end
 
-def read_data
+def read_note
   @id = params[:id]
   File.open("json/#{@id}.json", 'r') do |file|
     @notes = JSON.parse(file.read, symbolize_names: true)
   end
 end
 
-def write_data(id)
+def write_note(id)
   title = params[:title]
   comment = params[:comment]
   File.open("json/#{id}.json", 'w') do |file|
@@ -33,8 +33,8 @@ end
 get '/notes' do
   @title = 'メモ一覧'
   @notes = []
-  filename = Dir.glob('json/*').sort.reverse
-  filename.each do |file|
+  filenames = Dir.glob('json/*').sort.reverse
+  filenames.each do |file|
     File.open(file, 'r') do |f|
       @notes << JSON.parse(f.read, symbolize_names: true)
     end
@@ -50,28 +50,28 @@ end
 
 post '/notes' do
   id = Time.now.strftime('%Y%m%d%H%M%S')
-  write_data(id)
+  write_note(id)
 
   redirect '/notes', 303
 end
 
 get '/notes/:id' do
   @title = 'メモ内容を確認'
-  read_data
+  read_note
 
   erb :note
 end
 
 get '/notes/:id/edit' do
   @title = 'メモ内容を編集'
-  read_data
+  read_note
 
   erb :edit
 end
 
 patch '/notes/:id' do
   id = params[:id]
-  write_data(id)
+  write_note(id)
 
   redirect '/notes', 303
 end
