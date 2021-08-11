@@ -27,13 +27,9 @@ end
 
 get '/notes' do
   @title = 'メモ一覧'
-  @notes = []
   filenames = Dir.glob('json/*').sort.reverse
-  filenames.each do |file|
-    File.open(file, 'r') do |f|
-      @notes << JSON.parse(f.read, symbolize_names: true)
-    end
-  end
+  file_ids = filenames.map { |file| File.basename(file, '.json') }
+  @notes = file_ids.map { |id| read_note(id) }
 
   erb :notes
 end
