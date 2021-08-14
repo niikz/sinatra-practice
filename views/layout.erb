@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title><%= @title %> | MEMO APP</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header_inner">
+      <h1 class="header_title"><%= @title %></h1>
+      <div class="header_button">
+        <a href="/notes/new" class="button new">新規作成</a>
+        <a href="/notes" class="button">メモ一覧</a>
+      </div>
+    </div>
+  </header>
+  <%= yield %>
+</body>
+</html>

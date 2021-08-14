@@ -1,0 +1,19 @@
+<div class="contents">
+  <div class="note_item">
+    <h2 class="note_title"><%= escape_html @note[:title] %></h2>
+    <p class="note_comment"><%= escape_html @note[:comment] %></p>
+  </div>
+  <div class="button_items">
+    <a href="/notes/<%= @note[:id] %>/edit" class="button edit">編集</a>
+    <form action="/notes/<%= @note[:id] %>" method="POST" onSubmit="return check()">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="削除" class="button delete">
+    </form>
+  </div>
+</div>
+
+<script>
+  function check() {
+    return window.confirm('このメモを削除しますか？');
+  }
+</script>
