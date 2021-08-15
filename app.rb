@@ -10,9 +10,12 @@ helpers do
   end
 end
 
-def read_note(id)
-  File.open("json/#{id}.json", 'r') do |file|
-    JSON.parse(file.read, symbolize_names: true)
+class Note
+  CONNECTION = PG.connect(dbname: 'sinatra_note_app')
+  class << self
+    def show(id)
+      CONNECTION.exec("SELECT * FROM Notes WHERE id = $1", [id]).to_a
+    end
   end
 end
 
@@ -50,7 +53,7 @@ end
 get '/notes/:id' do
   @title = 'メモ内容を確認'
   id = params[:id]
-  @note = read_note(id)
+  @note = Note.show(id)[0]
 
   erb :note
 end
@@ -58,7 +61,7 @@ end
 get '/notes/:id/edit' do
   @title = 'メモ内容を編集'
   id = params[:id]
-  @note = read_note(id)
+  @note = Note.show(id)[0]
 
   erb :edit
 end
