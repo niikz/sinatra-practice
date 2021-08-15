@@ -2,7 +2,7 @@
 
 require 'sinatra'
 require 'sinatra/reloader'
-require 'json'
+require 'pg'
 
 helpers do
   def escape_html(text)
@@ -36,6 +36,7 @@ end
 
 get '/notes/new' do
   @title = '新しいメモを作成'
+
   erb :new
 end
 
