@@ -13,6 +13,9 @@ end
 class Note
   CONNECTION = PG.connect(dbname: 'sinatra_note_app')
   class << self
+    def index
+      CONNECTION.exec("SELECT * FROM Notes ORDER BY id DESC;").to_a
+    end
     def show(id)
       CONNECTION.exec("SELECT * FROM Notes WHERE id = $1", [id]).to_a
     end
@@ -30,9 +33,7 @@ end
 
 get '/notes' do
   @title = 'メモ一覧'
-  filenames = Dir.glob('json/*').sort.reverse
-  file_ids = filenames.map { |file| File.basename(file, '.json') }
-  @notes = file_ids.map { |id| read_note(id) }
+  @notes = Note.index
 
   erb :notes
 end
