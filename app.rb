@@ -19,15 +19,9 @@ class Note
     def show(id)
       CONNECTION.exec("SELECT * FROM Notes WHERE id = $1", [id]).to_a
     end
-  end
-end
-
-def write_note(id)
-  title = params[:title]
-  comment = params[:comment]
-  File.open("json/#{id}.json", 'w') do |file|
-    hash = { id: id, title: title, comment: comment }
-    JSON.dump(hash, file)
+    def create(title, comment)
+      CONNECTION.exec("INSERT INTO Notes (title, comment) VALUES ($1, $2)", [title, comment])
+    end
   end
 end
 
@@ -45,8 +39,9 @@ get '/notes/new' do
 end
 
 post '/notes' do
-  id = Time.now.strftime('%Y%m%d%H%M%S')
-  write_note(id)
+  title = params[:title]
+  comment = params[:comment]
+  Note.create(title, comment)
 
   redirect '/notes', 303
 end
