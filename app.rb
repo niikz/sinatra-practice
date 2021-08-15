@@ -22,6 +22,9 @@ class Note
     def create(title, comment)
       CONNECTION.exec("INSERT INTO Notes (title, comment) VALUES ($1, $2)", [title, comment])
     end
+    def update(id, title, comment)
+      CONNECTION.exec("UPDATE Notes SET title = $1, comment = $2 WHERE id = $3", [title, comment, id])
+    end
   end
 end
 
@@ -64,7 +67,9 @@ end
 
 patch '/notes/:id' do
   id = params[:id]
-  write_note(id)
+  title = params[:title]
+  comment = params[:comment]
+  Note.update(id, title, comment)
 
   redirect '/notes', 303
 end
