@@ -25,6 +25,9 @@ class Note
     def update(id, title, comment)
       CONNECTION.exec("UPDATE Notes SET title = $1, comment = $2 WHERE id = $3", [title, comment, id])
     end
+    def destroy(id)
+      CONNECTION.exec("DELETE FROM Notes WHERE id = $1", [id])
+    end
   end
 end
 
@@ -76,7 +79,7 @@ end
 
 delete '/notes/:id' do
   id = params[:id]
-  File.delete("json/#{id}.json")
+  Note.destroy(id)
 
   redirect '/notes', 303
 end
