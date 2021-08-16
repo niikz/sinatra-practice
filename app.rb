@@ -11,22 +11,29 @@ helpers do
 end
 
 class Note
-  CONNECTION = PG.connect(dbname: 'sinatra_note_app')
+  db_name = 'memo_app'
+  @table_name = 'Notes'
+  @connection = PG.connect(dbname: db_name.to_s)
+
   class << self
     def index
-      CONNECTION.exec("SELECT * FROM Notes ORDER BY id DESC")
+      @connection.exec("SELECT * FROM #{@table_name} ORDER BY id DESC")
     end
+
     def show(id)
-      CONNECTION.exec("SELECT * FROM Notes WHERE id = $1", [id]).first
+      @connection.exec("SELECT * FROM #{@table_name} WHERE id = $1", [id]).first
     end
+
     def create(title, comment)
-      CONNECTION.exec("INSERT INTO Notes (title, comment) VALUES ($1, $2)", [title, comment])
+      @connection.exec("INSERT INTO #{@table_name} (title, comment) VALUES ($1, $2)", [title, comment])
     end
+
     def update(id, title, comment)
-      CONNECTION.exec("UPDATE Notes SET title = $1, comment = $2 WHERE id = $3", [title, comment, id])
+      @connection.exec("UPDATE #{@table_name} SET title = $1, comment = $2 WHERE id = $3", [title, comment, id])
     end
+
     def destroy(id)
-      CONNECTION.exec("DELETE FROM Notes WHERE id = $1", [id])
+      @connection.exec("DELETE FROM #{@table_name} WHERE id = $1", [id])
     end
   end
 end
