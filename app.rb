@@ -14,7 +14,7 @@ class Note
   CONNECTION = PG.connect(dbname: 'sinatra_note_app')
   class << self
     def index
-      CONNECTION.exec("SELECT * FROM Notes ORDER BY id DESC;").to_a
+      CONNECTION.exec("SELECT * FROM Notes ORDER BY id DESC")
     end
     def show(id)
       CONNECTION.exec("SELECT * FROM Notes WHERE id = $1", [id]).first
