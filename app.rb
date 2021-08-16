@@ -14,6 +14,8 @@ class Note
   db_name = 'memo_app'
   @table_name = 'Notes'
   @connection = PG.connect(dbname: db_name.to_s)
+  create_table = "CREATE TABLE IF NOT EXISTS #{@table_name}(id SERIAL NOT NULL,title TEXT NOT NULL,comment TEXT);"
+  @connection.exec(create_table)
 
   class << self
     def index
