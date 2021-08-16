@@ -12,8 +12,11 @@ Sinatraで作成された簡易的なメモアプリです。
 - Ruby 2.7.3
     - Ruby 3.0 以降の場合、WEBrickが必要です
 - Sinatra 2.1.0
+- psql (PostgreSQL) 13.3
+- pg (1.2.3)
 
 ## Installation
+`memo_app`というデータベースを用意してください。
 リポジトリをクローンし、アプリを実行します。
 
 ```
