@@ -17,7 +17,7 @@ class Note
       CONNECTION.exec("SELECT * FROM Notes ORDER BY id DESC;").to_a
     end
     def show(id)
-      CONNECTION.exec("SELECT * FROM Notes WHERE id = $1", [id]).to_a
+      CONNECTION.exec("SELECT * FROM Notes WHERE id = $1", [id]).first
     end
     def create(title, comment)
       CONNECTION.exec("INSERT INTO Notes (title, comment) VALUES ($1, $2)", [title, comment])
@@ -55,7 +55,7 @@ end
 get '/notes/:id' do
   @title = 'メモ内容を確認'
   id = params[:id]
-  @note = Note.show(id)[0]
+  @note = Note.show(id)
 
   erb :note
 end
@@ -63,7 +63,7 @@ end
 get '/notes/:id/edit' do
   @title = 'メモ内容を編集'
   id = params[:id]
-  @note = Note.show(id)[0]
+  @note = Note.show(id)
 
   erb :edit
 end
