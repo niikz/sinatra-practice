@@ -65,6 +65,7 @@ get '/notes/:id' do
   @title = 'メモ内容を確認'
   id = params[:id]
   @note = Note.show(id)
+  redirect '/notes', 303 if @note.nil?
 
   erb :note
 end
@@ -73,6 +74,7 @@ get '/notes/:id/edit' do
   @title = 'メモ内容を編集'
   id = params[:id]
   @note = Note.show(id)
+  redirect '/notes', 303 if @note.nil?
 
   erb :edit
 end
