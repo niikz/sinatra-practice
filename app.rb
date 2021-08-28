@@ -94,3 +94,8 @@ delete '/notes/:id' do
 
   redirect '/notes', 303
 end
+
+not_found do
+  @title = 'メモが見つかりません'
+  erb :not_found
+end
