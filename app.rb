@@ -65,34 +65,28 @@ get '/notes/:id' do
   @title = 'メモ内容を確認'
   id = params[:id]
   @note = Note.show(id)
-  redirect '/notes', 404 if @note.nil?
-
-  erb :note
+  @note ? (erb :note) : (redirect 'not_found', 404)
 end
 
 get '/notes/:id/edit' do
   @title = 'メモ内容を編集'
   id = params[:id]
   @note = Note.show(id)
-  redirect '/notes', 404 if @note.nil?
-
-  erb :edit
+  @note ? (erb :edit) : (redirect 'not_found', 404)
 end
 
 patch '/notes/:id' do
   id = params[:id]
   title = params[:title]
   comment = params[:comment]
-  Note.update(id, title, comment)
-
-  redirect '/notes', 303
+  @note = Note.update(id, title, comment)
+  @note ? (redirect '/notes', 303) : (redirect 'not_found', 404)
 end
 
 delete '/notes/:id' do
   id = params[:id]
-  Note.destroy(id)
-
-  redirect '/notes', 303
+  @note = Note.destroy(id)
+  @note ? (redirect '/notes', 303) : (redirect 'not_found', 404)
 end
 
 not_found do
