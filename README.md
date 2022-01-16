@@ -31,4 +31,4 @@ http://localhost:4567/notes
 ```
 
 ## Author
-@niikz
+niikz
